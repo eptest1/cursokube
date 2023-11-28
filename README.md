@@ -1,0 +1,2 @@
+# cursokube
+ejercicio curso kubernetes
