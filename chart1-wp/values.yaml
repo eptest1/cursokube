@@ -1,0 +1,9 @@
+appName: wp1
+db:
+        name: wordpress
+        host: wordpress-mysql
+        user: wordpress
+        password: password
+persistence:
+        size: 1Gi
+        claimName: wp-pvc1

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress
+  name: {{ .Release.Name }}-wordpress
   labels:
     app: wordpress
 spec:
@@ -22,11 +22,11 @@ spec:
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
-          value: wordpress-mysql
+          value:  {{ .Values.db.host }}
         - name: WORDPRESS_DB_PASSWORD
-          value: password
+          value: {{ .Values.db.password | quote }}
         - name: WORDPRESS_DB_USER
-          value: wordpress 
+          value:  {{ .Values.db.user | quote }}
         ports:
         - containerPort: 80
           name: wordpress
@@ -36,5 +36,5 @@ spec:
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
-          claimName: wp-pv-claim
+          claimName: {{ .Values.persistence.claimName }}
 

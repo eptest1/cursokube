@@ -1,6 +1,9 @@
 apiVersion: v2
-name: wph1
-description: A Helm chart for Kubernetes
+name: wordpress
+description: A Helm chart for Kubernetes - chart1 - wordpress
+maintainers:
+        - email : emiliopenna@gmail.com
+          name: Emilio
 
 # A chart can be either an 'application' or a 'library' chart.
 #
