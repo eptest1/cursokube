@@ -50,6 +50,10 @@ helm delete my-release
 ```
 Ese comando remueve todos los componentes Kubernetes asociados con el chart y borra el release
 
+## Port forwarding
+
+Para acceder ....
+
 ## Parametros
 
 

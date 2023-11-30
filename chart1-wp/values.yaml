@@ -3,7 +3,9 @@ apps:
         wordpress:
                 image: wordpress
                 tag: 6.2.1-apache
-
+        mysql:
+                image: mysql
+                tag: "8.0"
 persistence:
         size: 1Gi
         claimName: wp-pvc1

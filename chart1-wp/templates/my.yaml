@@ -1,34 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-mysql
+  name: {{ .Release.Name }}-wordpress-mysql
   labels:
-    app: wordpress
+    app: {{ template "wordpress.fullname" . }}
+    chart: {{ template "wordpress.chart" . }}
+    release: {{ .Release.Name |quote}}
 spec:
   selector:
     matchLabels:
-      app: wordpress
+      app: {{ template "wordpress.fullname" . }}
       tier: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: wordpress
+        app: {{ template "wordpress.fullname" . }}
         tier: mysql
     spec:
       containers:
-      - image: mysql:8.0
-        name: mysql
+      - image: {{ .Values.apps.mysql.image }}:{{ .Values.apps.mysql.tag }}
+        name: {{ .Chart.Name }}-mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          value: {{ .Values.db.rootpassword }}
         - name: MYSQL_DATABASE
-          value: wordpress
+          value: {{ .Values.db.name }}
         - name: MYSQL_USER
-          value: wordpress
+          value: {{ .Values.db.user }}
         - name: MYSQL_PASSWORD
-          value: password
+          value: {{ .Values.db.password }}
         ports:
         - containerPort: 3306
           name: mysql
