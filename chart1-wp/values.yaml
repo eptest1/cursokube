@@ -4,13 +4,13 @@ db:
         host: wordpress-mysql
         user: wordpress
         password: password
+        rootpassword: rutpassword
+        persistence:
+                size: 1Gi
+                claimName: my-pvc1
+                accessMode: ReadWriteOnce
 
 persistence:
         size: 1Gi
         claimName: wp-pvc1
         accessMode: ReadWriteOnce
-db:
-        persistence:
-                size: 1Gi
-                claimName: my-pvc1
-                accessMode: ReadWriteOnce

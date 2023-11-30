@@ -20,6 +20,14 @@ spec:
       containers:
       - image: wordpress:6.2.1-apache
         name: wordpress
+        resources:
+              requests:
+                memory: "300Mi"
+                cpu: "250m"
+              limits:
+                memory: "500Mi"
+                cpu: "500m"
+
         env:
         - name: WORDPRESS_DB_HOST
           value:  {{ .Values.db.host }}
