@@ -1,12 +1,15 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: {{ .Values.db.persistence.claimName }}
+
   labels:
-    app: wordpress
+    app: {{ template "wordpress.fullname" . }}
+    chart: {{ template "wordpress.chart" . }}
+    release: {{ .Release.Name |quote}}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - {{ .Values.db.persistence.accessMode }}
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.db.persistence.size }} 
