@@ -1,4 +1,14 @@
 appName: wp1
+apps:
+        wordpress:
+                image: wordpress
+                tag: 6.2.1-apache
+
+persistence:
+        size: 1Gi
+        claimName: wp-pvc1
+        accessMode: ReadWriteOnce
+
 db:
         name: wordpress
         host: wordpress-mysql
@@ -9,8 +19,13 @@ db:
                 size: 1Gi
                 claimName: my-pvc1
                 accessMode: ReadWriteOnce
+service:
+        wordpress:
+                internalPort: 80
 
-persistence:
-        size: 1Gi
-        claimName: wp-pvc1
-        accessMode: ReadWriteOnce
+
+resources:
+        wordpress:
+                memory: 500Mi
+                cpu: 500m
+
