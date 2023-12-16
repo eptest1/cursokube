@@ -8,6 +8,6 @@ spec:
   ports:
     - port: 3306
   selector:
-    app: wordpress
+    app: {{ template "wordpress.fullname" . }}
     tier: mysql
   clusterIP: None

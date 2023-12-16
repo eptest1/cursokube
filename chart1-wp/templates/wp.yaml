@@ -29,11 +29,13 @@ spec:
 
         env:
         - name: WORDPRESS_DB_HOST
-          value:  {{ .Release.Name}}-{{ .Values.db.host }}
+          value:  {{ .Values.db.host }}
         - name: WORDPRESS_DB_PASSWORD
           value: {{ .Values.db.password  }}
         - name: WORDPRESS_DB_USER
           value:  {{ .Values.db.user }}
+        - name: WORDPRESS_DEBUG
+          value: "true"
         ports:
         - containerPort: {{ .Values.service.wordpress.internalPort}}
           name: wordpress
