@@ -52,7 +52,11 @@ Ese comando remueve todos los componentes Kubernetes asociados con el chart y bo
 
 ## Port forwarding
 
-Para acceder ....
+Una de las formas de acceder a la instancia de wordpress es realizar un port forwarding con el siguiente comando (suponiendo que el release se haya instalado con el nombre "my-release")":
+
+```console
+kubeclt port-forward deployment/my-release-wordpress  8000:80
+```
 
 ## Parametros
 
@@ -60,4 +64,18 @@ Para acceder ....
 | Nombre                    | Descripcion                                     | Valor |
 | ------------------------- | ----------------------------------------------- | ----- |
 | `global.imageRegistry`    | Global Docker image registry                    | `""`  |
+|apps.wordpress.image|Imagen para usar de wordpress| wordpress|
+|apps.wordpress.tag|tag de la imagen| 6.2.1-apache|
+|apps.mysql.image|Imagen para usar de mysql|mysql|
+|apps.mysql.tag|tag de la imagen de mysql| 8.0|
+|persistence.size| tamaño de la unidad de persistencia para wordpress| 1Gi|
+|db.name| nombre de la base de datos| wordpress|
+|db.host| host de la base de datos| wordpress-mysql|
+|db.user| usuario de la base de datos| wordpress|
+|db.password| password del usuario de la base de datos| password|
+|db.rootpassword| password del usuario root de la base de datos| password|
+|db.persistence.size| tamaño de la unidad de persistencia para mysql| 1Gi|
+|service.wordpress.internalport| puerto donde escucha el apache con wordpress| 80|
+|resources.wordpress.memory| memoria asignada para el contenedor con wordpress| 500Mi|
+|resources.wordpress.cpu| cpu asignada para el contenedor con wordpress| 500m|
 
